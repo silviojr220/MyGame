@@ -1,15 +1,26 @@
 ﻿using Game.Entidades.Player;
+
 namespace Game.Interface.Menus;
 
-public class MenuPrincipal
+public class MenuPrincipal : MenuBase
 {
-    public void MostrarMenu()
+    private readonly Jogador _jogador;
+
+    public MenuPrincipal(Jogador jogador)
+    {
+        _jogador = jogador;
+    }
+
+    public override void Mostrar()
     {
         bool sair = false;
 
         while (!sair)
         {
-            
+            Console.Clear();
+
+            _jogador.MostrarStatusBarra();
+
             Console.WriteLine("\n==- Menu Principal -==\n");
             Console.WriteLine("1 - Status Geral");
             Console.WriteLine("2 - Inventário");
@@ -29,20 +40,16 @@ public class MenuPrincipal
             switch (opcaoNumber)
             {
                 case 1:
-                    Console.Clear();
-                    MenuStatus menuStatus = new MenuStatus();
-                    menuStatus.StatusGeral();
+                    new MenuStatus(_jogador).Mostrar();
                     break;
 
                 case 2:
-                    Console.Clear();
-                    MenuInventario menuInventario = new MenuInventario();
-                    menuInventario.Inventario();
+                    new MenuInventario(_jogador).Mostrar();
                     break;
 
                 case 3:
                     sair = true;
-                    Console.WriteLine("Saindo do jogo...");
+                    Console.WriteLine("\nSaindo do jogo...");
                     break;
 
                 default:
@@ -51,11 +58,5 @@ public class MenuPrincipal
                     break;
             }
         }
-    }
-
-    public void EsperarContinuar()
-    {
-        Console.WriteLine("Pressione qualquer tecla para continuar...");
-        Console.ReadKey();
     }
 }

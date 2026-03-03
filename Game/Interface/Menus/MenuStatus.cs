@@ -1,9 +1,21 @@
-﻿namespace Game.Interface.Menus;
+﻿using Game.Entidades.Player;
 
-class MenuStatus : MenuPrincipal
+namespace Game.Interface.Menus;
+
+public class MenuStatus : MenuBase
 {
-    public void StatusGeral()
-    {
+    private readonly Jogador _jogador;
 
+    public MenuStatus(Jogador jogador)
+    {
+        _jogador = jogador;
+    }
+
+    public override void Mostrar()
+    {
+        Console.Clear();
+        _jogador.MostrarStatusAtributos();
+
+        EsperarContinuar();
     }
 }

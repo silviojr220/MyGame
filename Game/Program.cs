@@ -11,29 +11,11 @@ class Principal
         barra.BarraDeCarregamento();
         Console.Clear();
 
-        Jogador player = new()
-        {
-            VidaAtual = 100,
-            VidaMax = 100,
-
-            EnergiaAtual = 60,
-            EnergiaMax = 60,
-
-            Level = 1,
-            Exp = 0,
-
-            Dano = 10
-        };
-
-       
-        player.MostrarStatusBarra();
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.MostrarMenu();
+        Jogador player = new();
 
 
-        MenuInventario inventario = new MenuInventario();
-        inventario.Inventario();
-
+        MenuPrincipal menu = new(player);
+        menu.Mostrar();
     }
 
 }
